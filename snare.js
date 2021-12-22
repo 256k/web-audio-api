@@ -12,6 +12,8 @@ snareGainControl.connect(audioContext.destination)
 // for a snare we want to use a high pass filter. this is done with a biquad filter:
 const snareFilter = audioContext.createBiquadFilter();
 snareFilter.type = 'highpass';
+snareFilter.frequency.value = 3500;
+snareFilter.connect(snareGainControl);
 
 
 const snareButton = document.createElement('button');
@@ -19,7 +21,7 @@ snareButton.innerText = 'play snare';
 snareButton.addEventListener('click', () => {
   const snareSource = audioContext.createBufferSource();
   snareSource.buffer = snareBuffer;
-  snareSource.connect(snareGainControl);
+  snareSource.connect(snareFilter);
   snareSource.start();
 })
 document.body.appendChild(snareButton);
