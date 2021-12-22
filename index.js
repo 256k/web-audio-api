@@ -72,7 +72,22 @@ gainControl.connect(audioContext.destination)
 // we'll do this with a button
 
 const button = document.createElement('button');
+button.innerText = 'play'
 button.addEventListener('click', () => {
   whiteNoiseSource.start();
 })
 document.body.appendChild(button);
+
+/** NOTE:  A audio node will only play once, so we need to create a new one everytime we play it**/
+
+// we have to move the creation of the buffersource (the audio buffer node), its assignment and dconnections and start inside the click function to be re-created everytime
+
+const button2 = document.createElement('button');
+button2.innerText = 'play more'
+button2.addEventListener('click', () => {
+  const whiteNoiseSource = audioContext.createBufferSource();
+  whiteNoiseSource.buffer = buffer;
+  whiteNoiseSource.connect(gainControl);
+  whiteNoiseSource.start();
+})
+document.body.appendChild(button2);
