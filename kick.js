@@ -21,3 +21,6 @@ kickButton.addEventListener('click', () => {
   kickOsc.stop(audioContext.currentTime + 0.5);  
 
 });
+
+
+// TO BE CONTINUED AT: https://youtu.be/laCjGMhASp8?t=802
